@@ -1,0 +1,14 @@
+body {
+    background-color: aliceblue;
+}
+table, tr, td, th {
+    background-color: azure;
+    border: solid 1px darkkhaki;
+}
+select {
+    padding: 2px;
+    margin: 3px;
+}
+select:focus {
+    outline: none;
+}
