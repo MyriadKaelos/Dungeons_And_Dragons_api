@@ -9,6 +9,37 @@ select {
     padding: 2px;
     margin: 3px;
 }
-select:focus {
+button:focus {
     outline: none;
+}
+button {
+    float: right;
+    border: solid 1px darkseagreen;
+    background-color: blanchedalmond;
+    color: darkolivegreen;
+}
+#search, #refine {
+    float: none;
+}
+#info{
+    position: absolute;
+    top: 10px;
+    left: 300px;
+    display: none;
+    border: solid 1px darkkhaki;
+    background-color: azure;
+}
+#info button {
+    float: none;
+}
+#actionsElse {
+    position: fixed;
+    float: right;
+    left: 50%;
+    top: 10px;
+    display: none;
+    border: solid 1px darkkhaki;
+    background-color: darkcyan;
+    padding: 8px;
+    color: aliceblue;
 }
