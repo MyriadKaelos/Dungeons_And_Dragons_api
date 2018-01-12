@@ -28,6 +28,7 @@ button {
     display: none;
     border: solid 1px darkkhaki;
     background-color: azure;
+    width: 400px;
 }
 #info button {
     float: none;
