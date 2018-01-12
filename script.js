@@ -74,7 +74,7 @@ function searchFunction() {
                 if(attrRefine === ""){
                     $("tr:nth-child(" + (collection[u].index + 1) + ")").css("display","table-row");//makes the options that apply the search criteria appear.
                     console.log(collection[u].name + " of index " + collection[u].index + " : " + y + " = " + collection[u][y] + ".");//console.logs the reason any object is appearing.
-                } else if(y === attrRefine) {
+                } else if(y === attrRefine.toLowerCase()) {
                     $("tr:nth-child(" + (collection[u].index + 1) + ")").css("display","table-row");//makes the options that apply the search criteria and the refinery appear.
                     console.log(collection[u].name + " of index " + collection[u].index + " : " + y + " = " + collection[u][y] + ".");//console.logs the reason any object is appearing.
                 } else if($("tr:nth-child(" + (collection[u].index + 1) + ")").css("display") !== "none") {
