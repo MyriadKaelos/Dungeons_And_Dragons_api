@@ -1,7 +1,7 @@
 body {
     background-color: aliceblue;
 }
-table, tr, td, th {
+table, tr, td, th, #info {
     background-color: azure;
     border: solid 1px darkkhaki;
 }
@@ -18,7 +18,7 @@ button {
     background-color: blanchedalmond;
     color: darkolivegreen;
 }
-#search, #refine {
+#search, #refine, #info button {
     float: none;
 }
 #info{
@@ -26,21 +26,5 @@ button {
     top: 10px;
     left: 300px;
     display: none;
-    border: solid 1px darkkhaki;
-    background-color: azure;
     width: 400px;
-}
-#info button {
-    float: none;
-}
-#actionsElse {
-    position: fixed;
-    float: right;
-    left: 50%;
-    top: 10px;
-    display: none;
-    border: solid 1px darkkhaki;
-    background-color: darkcyan;
-    padding: 8px;
-    color: aliceblue;
 }
