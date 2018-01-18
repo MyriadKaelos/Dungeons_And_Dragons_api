@@ -1,13 +1,9 @@
 var collection = [];
-var ready = false;
 var attrRefine = "";
-$("document").ready(function() {
+$(function() {
     getAjaxNow();
     $("#clicker").click(function() {
         loader();
-    });
-    $("#search").click(function() {
-
     });
 });
 function getAjaxNow() {
@@ -38,17 +34,13 @@ function getAjaxParticular(myURL) {
 }//gets the giant object for each of the 325 monsters
 function loader() {
     if(collection.length >= 325) {
-        console.log(collection);
-        ready = true;
-        $("#clicker").parent().append("<th><button id='search' onclick='searchFunction()'>Search</button><button id='refine' onclick='refineFunction()'>Refine by attribute</button><button onclick='resetRefine()'>reset</button></th>");
-        $("#clicker").remove();//makes sure the load button is gone and is replaced with the search Icon
+        $("#clicker").replaceWith("<th><button id='search' onclick='searchFunction()'>Search</button><button id='refine' onclick='refineFunction()'>Refine by attribute</button><button onclick='resetRefine()'>reset</button></th>");
         collection.sort(compare);
         for(var o in collection) {
             $("#editableTable").append("<tr><td>" + collection[o].name + "<button id='" + o + "'>More</button></td></tr>");//makes the table of monsters and the more info buttons.
             $("#" + o).click(function() {
                 var g = this.id;//makes a variable that doesn't change with the list
-                $("#info").css("display","block");
-                $("#info").html("");//reset the infoBox
+                $("#info").css("display","block").html("");//reset the infoBox
                 for(var c in collection[g]) {
                     var f = makeTheF(g,c);
                     $("#info").append("<tr><td>" + c + ": " + f + "</td></tr>");//makes a place for each attribute
@@ -56,15 +48,14 @@ function loader() {
             });
         }
     } else {
-        console.log(collection.length + " out of 325 loaded");
+        $("#clicker").text(collection.length + " out of 325 loaded");
     }
 }//loads the info box
 function searchFunction() {
-    var criteria = prompt("search for a keyword in a monster's database.\nAnything will do, type, size, name, even languages!");
+    var criteria = prompt("search for a keyword in a monster's database.\nAnything will do, type, size, name, even languages!").toLowerCase();
     if(criteria === "" || criteria === null) {//checks if the user input anything.
         return true;
     }
-    criteria = criteria.toLowerCase();//the user's search criteria
     console.log(criteria);
     console.log(attrRefine);
     $("#editableTable tbody tr").css("display","none");//all options unavailable
@@ -74,7 +65,7 @@ function searchFunction() {
                 if(attrRefine === ""){
                     $("tr:nth-child(" + (collection[u].index + 1) + ")").css("display","table-row");//makes the options that apply the search criteria appear.
                     console.log(collection[u].name + " of index " + collection[u].index + " : " + y + " = " + collection[u][y] + ".");//console.logs the reason any object is appearing.
-                } else if(y === attrRefine.toLowerCase()) {
+                } else if(y === attrRefine) {
                     $("tr:nth-child(" + (collection[u].index + 1) + ")").css("display","table-row");//makes the options that apply the search criteria and the refinery appear.
                     console.log(collection[u].name + " of index " + collection[u].index + " : " + y + " = " + collection[u][y] + ".");//console.logs the reason any object is appearing.
                 } else if($("tr:nth-child(" + (collection[u].index + 1) + ")").css("display") !== "none") {
@@ -91,11 +82,12 @@ function searchFunction() {
 function refineFunction() {
     attrRefine = prompt("if you would like to refine your keyword search by an attribute,\n type the attribute here.\n\n" +
         "Note: make sure you type in the attribute's name exactly,\n" +
-        "you can check the attribute list by looking at any info boxes of any monster","damage_immunities");
+        "you can check the attribute list by looking at any info boxes of any monster","damage_immunities").toLowerCase();
     console.log(attrRefine);
 }
 function resetRefine() {
     $("#editableTable tbody tr").css("display","table-row");//all options unavailable
+    $("#info").css("display","none").html("");
 }
 function makeTheF(g,c) {
     if(collection[g][c] === "") {
